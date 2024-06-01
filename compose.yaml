@@ -8,9 +8,9 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  counter-service:
+  basic-flask-app-master:
     container_name: Basic Flask App
-    image: 471112599313.dkr.ecr.eu-west-1.amazonaws.com/cbasic-flask-app-master:latest
+    image: 471112599313.dkr.ecr.eu-west-1.amazonaws.com/basic-flask-app-master:latest
     volumes:
       - ./data:/data
     ports:
