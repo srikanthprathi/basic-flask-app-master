@@ -107,6 +107,9 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
+      - name: Login to Amazon ECR again
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
       - name: Deploy to EC2
         env:
           EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
@@ -133,7 +136,7 @@ jobs:
           
           # Pull and run the Docker container on EC2
           echo "changing directory"
-          $SSH_COMMAND "sudo cd /home/ubuntu/docker/ && sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG && sudo docker compose -f compose.yaml up -d --force-recreate"
+          $SSH_COMMAND "cd /home/ubuntu/docker/ && sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG && sudo docker compose -f compose.yaml up -d --force-recreate"
           echo "compose image"
           
           # Cleanup PEM key
