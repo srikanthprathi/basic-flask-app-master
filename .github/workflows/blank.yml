@@ -36,7 +36,7 @@ jobs:
           
           # If there's no tag yet, start with v0.0.0. Used for new repos
           if [ -z "$LATEST_TAG" ]; then
-            LATEST_TAG="v0.0.0"
+            LATEST_TAG="v0.1.0"
           fi
           
           # Increment the patch version
