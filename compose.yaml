@@ -8,6 +8,16 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
+  counter-service:
+    container_name: Basic Flask App
+    image: 471112599313.dkr.ecr.eu-west-1.amazonaws.com/cbasic-flask-app-master:latest
+    volumes:
+      - ./data:/data
+    ports:
+      - "5000:5080"
+    restart: always
+    mem_limit: 256M
+    cpus: 0.5
   server:
     build:
       context: .
