@@ -107,9 +107,6 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Login to Amazon ECR again
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
       - name: Deploy to EC2
         env:
           EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
