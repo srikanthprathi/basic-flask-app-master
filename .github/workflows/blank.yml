@@ -100,9 +100,11 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}       
 
       - name: Setup Git
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
+          echo "${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          echo "${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
