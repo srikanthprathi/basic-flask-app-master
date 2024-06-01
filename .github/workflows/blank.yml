@@ -96,11 +96,11 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           # Push the latest tag
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}       
+      #- name: SonarCloud Scan
+      #  uses: SonarSource/sonarcloud-github-action@master
+       # env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}       
 
       - name: Setup Git
         run: |
@@ -125,7 +125,7 @@ jobs:
           SCP_COMMAND="scp -i ec2.pem -o StrictHostKeyChecking=no"
   
           #Login to Docker registry
-          $SSH_COMMAND "docker login -u AWS -p $(aws ecr get-login-password --region us-east-2) 471112599313.dkr.ecr.us-east-1.amazonaws.com"
+          $SSH_COMMAND "docker login -u AWS -p $(aws ecr get-login-password --region us-east-2) 471112599313.dkr.ecr.us-east-2.amazonaws.com"
           
           # Copy compose.yaml to EC2 server
           $SCP_COMMAND compose.yaml $EC2_USER@$EC2_HOST:/home/ubuntu/docker/
