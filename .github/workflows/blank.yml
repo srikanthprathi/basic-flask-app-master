@@ -133,11 +133,8 @@ jobs:
           
           # Pull and run the Docker container on EC2
           echo "changing directory"
-          $SSH_COMMAND "cd /home/ubuntu/docker/"
-          echo "pulling image"
-          $SSH_COMMAND "sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          $SSH_COMMAND "cd /home/ubuntu/docker/ && docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG && sudo docker compose -f compose.yaml up -d --force-recreate"
           echo "compose image"
-          $SSH_COMMAND "sudo docker compose -f compose.yaml up -d --force-recreate"
           
           # Cleanup PEM key
           rm -f ec2.pem
