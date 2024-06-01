@@ -135,6 +135,7 @@ jobs:
           echo "changing directory"
           $SSH_COMMAND "cd /home/ubuntu/docker/"
           $SSH_COMMAND "sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          $SSH_COMMAND "cd /home/ubuntu/docker/"
           $SSH_COMMAND "docker compose -f compose.yaml up -d --force-recreate"
           echo "compose image"
           
